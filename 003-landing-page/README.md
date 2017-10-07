@@ -20,5 +20,7 @@ Impliment a Title Component.  This will display all the info for a single movie.
 Impliment a TitleList Component.  This will be used to display a number of movie titles and will be reused for different categories
 
 ### 4 - Header Bar
-
 Get the search bar in with a logo.  Leave the links for later
+
+### 5
+Add user profile and Navigation features to header bar.  Hope the the formatting works out (Title list still undernead the header bar)
