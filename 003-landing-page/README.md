@@ -17,5 +17,8 @@ Create first basic Menupage components. No functionality
 ### 3
 Impliment a Title Component.  This will display all the info for a single movie..  Note, this was called an 'Item' in the original implimentation so some css changes might be required later
 
-### 4
 Impliment a TitleList Component.  This will be used to display a number of movie titles and will be reused for different categories
+
+### 4 - Header Bar
+
+Get the search bar in with a logo.  Leave the links for later
