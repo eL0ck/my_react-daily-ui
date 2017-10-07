@@ -1,3 +1,4 @@
+import './styles.css'
 import React from 'react'
 
 const Title = ({backdrop, title, score, overview}) => {

@@ -1,3 +1,4 @@
+import './styles.css'
 import React from 'react'
 import Logo from '../Logo'
 import TitleList from '../TitleList'

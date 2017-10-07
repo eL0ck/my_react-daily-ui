@@ -29,6 +29,9 @@ Add user profile and Navigation features to header bar.  Hope the the formatting
 ### 6 - Hero featur
   Put this hero feature in and see if it fixes up the formatting issues
 
+### 7 - Organise CSS
+  Put css into component specific files
+
 ## Extension Tasks
   Features that add to the original
 

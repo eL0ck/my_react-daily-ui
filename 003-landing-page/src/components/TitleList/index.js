@@ -1,3 +1,4 @@
+import './styles.css'
 import React, { Component } from 'react'
 import Title from '../Title'
 
@@ -7,7 +8,6 @@ const apiKey = '838f6976dbdff9ce8ec7aa0b31424e11'
 
 // eslint-disable-next-line react/prefer-stateless-function
 class TitleList extends Component{
-
   constructor(props) {
     super(props)
     this.state = {data: [], mounted: false};

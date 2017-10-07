@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles.css'
 
 const Logo = () => (
 			<div id="logo" className="Logo">
