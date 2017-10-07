@@ -6,7 +6,8 @@ This is a copy of the app blogged about [here](https://react.rocks/example/Movie
 - move css to individual component folders
 
 
-## Tasks
+## Basic Tasks
+tasks to replicate functionality
 
 ### 1
 Project setup
@@ -24,3 +25,13 @@ Get the search bar in with a logo.  Leave the links for later
 
 ### 5
 Add user profile and Navigation features to header bar.  Hope the the formatting works out (Title list still undernead the header bar)
+
+### 6 - Hero featur
+  Put this hero feature in and see if it fixes up the formatting issues
+
+## Extension Tasks
+  Features that add to the original
+
+  - Have the Hero image change to the item selected
+  - Make a scroll accross feature so that more than just the first 5 can be displayed
+  - Make a 'My List' page using state

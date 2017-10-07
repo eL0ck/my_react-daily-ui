@@ -3,6 +3,7 @@ import Logo from '../Logo'
 import TitleList from '../TitleList'
 import UserProfile from '../UserProfile'
 import Navigation from '../Navigation'
+import Hero from '../Hero'
 
 const MenuPage = () => (
   <div>
@@ -14,6 +15,7 @@ const MenuPage = () => (
     </div>
     <UserProfile />
     </header>
+    <Hero />
     <TitleList name="The Simpsons" />
   </div>
 )
