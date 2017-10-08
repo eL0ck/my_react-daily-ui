@@ -18,6 +18,10 @@ const MenuPage = () => (
     </header>
     <Hero />
     <TitleList name="The Simpsons" />
+    <TitleList name="Comedy" />
+    <TitleList name="Sci-Fi greats" />
+    <TitleList name="Horror" />
+    <TitleList name="Top TV picks for Jack" />
   </div>
 )
 

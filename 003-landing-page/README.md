@@ -2,10 +2,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This is a copy of the app blogged about [here](https://react.rocks/example/Movies_landing_page)
 
-#### TODO:
-- move css to individual component folders
-
-
 ## Basic Tasks
 tasks to replicate functionality
 
@@ -32,9 +28,20 @@ Add user profile and Navigation features to header bar.  Hope the the formatting
 ### 7 - Organise CSS
   Put css into component specific files
 
+### 8 - Add more TitleLists
+Added a couple of Movie genres and top tv picks
+
+### 9 - Add a search TitleList
+
 ## Extension Tasks
   Features that add to the original
 
+  ### Easy
+  - Do an initial query for movie genres and store in a redux store.  Use this to allow the TitleList to query off its name not the hardcoded id
+  - Make Username a global state variable to. So that 'Top picks for Jack' is updated
+
+### Harder
   - Have the Hero image change to the item selected
   - Make a scroll accross feature so that more than just the first 5 can be displayed
   - Make a 'My List' page using state
+  - Allow entire TV series to be displayed in a 'Title' component
