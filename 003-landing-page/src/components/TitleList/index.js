@@ -19,7 +19,7 @@ class TitleList extends Component{
       console.log('ERROR:', err)
       this.setState({error: err})
     } else if (res) {
-      this.setState({data: res})
+      this.setState({data: res, mounted: true })
     } else {
       console.log('Neither err or res found on this query');
     }
@@ -41,13 +41,12 @@ class TitleList extends Component{
     if (this.props.name === 'Top TV picks for Jack') {
       MovieDB.discoverTv({}, this.saveQueryToState);
     } else {
-      console.log("Unimplimented ERROR");
+      console.log("DB query is unimplimented! not displaying this component ... ");
     }
   }
 
   componentWillMount() {
     this.loadContent()
-    this.setState({ mounted: true })
   }
 
   render() {

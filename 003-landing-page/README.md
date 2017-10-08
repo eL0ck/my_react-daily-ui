@@ -48,6 +48,11 @@ The `TitleList` component has a method `componentWillReceiveProps` which compare
 
 The usage of `componentDidMount` seems redundant to me.  Wonder if this is nessesary??
 
+#### Tasks
+a) - impliment a prop for the search Query
+b) - Fill the prop from the search bar
+c) - Change the `TitleList` component to use the query string
+
 ## Extension Tasks
   Features that add to the original
 
