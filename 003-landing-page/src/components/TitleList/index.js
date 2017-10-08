@@ -13,7 +13,7 @@ class TitleList extends Component{
     this.state = {data: [], mounted: false};
   }
 
-  // This must be an arrow funct to use 'this' without passing the instance in.
+  // This must be an arrow funct to use 'this' without passing the instance in but apparently its not stricly ES6.
   saveQueryToState = (err, res) => {
     if (err){
       console.log('ERROR:', err)
