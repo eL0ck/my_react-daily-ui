@@ -32,6 +32,21 @@ Add user profile and Navigation features to header bar.  Hope the the formatting
 Added a couple of Movie genres and top tv picks
 
 ### 9 - Add a search TitleList
+Good example of how to bind event listeners in React
+
+The key point here is that this is a 'Controlled input'.  This means its has a `value` property and is therefore controlled by React.  You need an `onChange` handler to change the `value`.
+
+`handleKeyUp` method is used to actually fire the search
+
+This is also a good example of **inheriting state through props**.  The `url` prop is set to a state variable of the `App` (`MenuPage` in the new version) component.
+
+**Why doesn't the request fire everytime a letter is typed?**
+
+The `TitleList` component has a method `componentWillReceiveProps` which compares only the `url` property.  If it finds no changes in this then the `TitleList` state never changes and the component doesn't re-render.
+
+(**!!** I wonder if we can do this with `shouldComponentUpdate()` it would be clearer to me)
+
+The usage of `componentDidMount` seems redundant to me.  Wonder if this is nessesary??
 
 ## Extension Tasks
   Features that add to the original

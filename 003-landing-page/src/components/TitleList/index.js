@@ -45,19 +45,9 @@ class TitleList extends Component{
     }
   }
 
-  componentWillReceiveProps(nextProps){
-    if(nextProps.url !== this.props.url && nextProps.url !== ''){
-      this.setState({mounted:true,url:nextProps.url},()=>{
-        this.loadContent();
-      });
-    }
-  }
-
-  componentDidMount() {
-    if(this.props.url !== ''){
-      this.loadContent();
-      this.setState({mounted:true});
-    }
+  componentWillMount() {
+    this.loadContent()
+    this.setState({ mounted: true })
   }
 
   render() {
