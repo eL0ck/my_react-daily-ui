@@ -1,25 +1,29 @@
-import './styles.css'
 import React, { Component } from 'react'
+import './styles.css'
 import Title from '../Title'
 
+
 const MovieDB = require('moviedb')('838f6976dbdff9ce8ec7aa0b31424e11')
-const apiKey = '838f6976dbdff9ce8ec7aa0b31424e11'
-//const apiKey = '87dfa1c669eea853da609d4968d294be'
 
 // eslint-disable-next-line react/prefer-stateless-function
-class TitleList extends Component{
+class TitleList extends Component {
   constructor(props) {
     super(props)
-    this.state = {data: [], mounted: false};
+    this.state = { data: [], mounted: false };
   }
 
-  // This must be an arrow funct to use 'this' without passing the instance in but apparently its not stricly ES6.
+  componentWillMount() {
+    this.loadContent()
+  }
+
+  // This must be an arrow funct to use 'this' without passing the instance in
+  // but apparently its not stricly ES6.
   saveQueryToState = (err, res) => {
-    if (err){
-      console.log('ERROR:', err)
-      this.setState({error: err})
+    if (err) {
+      console.log('ERROR:', err);
+      this.setState({ error: err })
     } else if (res) {
-      this.setState({data: res, mounted: true })
+      this.setState({ data: res, mounted: true })
     } else {
       console.log('Neither err or res found on this query');
     }
@@ -40,38 +44,44 @@ class TitleList extends Component{
     } else
     if (this.props.name === 'Top TV picks for Jack') {
       MovieDB.discoverTv({}, this.saveQueryToState);
+    } else
+    if (this.props.name === 'Search Results') {
+      MovieDB.searchMovie({ query: this.props.query }, this.saveQueryToState);
     } else {
-      console.log("DB query is unimplimented! not displaying this component ... ");
+      console.log('DB query is unimplimented! not displaying this component ... ');
     }
   }
 
-  componentWillMount() {
-    this.loadContent()
-  }
-
   render() {
-    var titles ='';
-    if(this.state.data.results) {
-      titles = this.state.data.results.map(function(title, i) {
-        if(i < 5) {
-          var name = '';
-          var backDrop = 'http://image.tmdb.org/t/p/original' + title.backdrop_path;
-          if(!title.name) {
+    let titles = '';
+    if (this.state.data.results) {
+      titles = this.state.data.results.map((title, i) => {
+        if (i < 5) {
+          let name = '';
+          const backDrop = `http://image.tmdb.org/t/p/original${title.backdrop_path}`;
+          if (!title.name) {
             name = title.original_title;
           } else {
             name = title.name;
           }
           return (
-            <Title key={title.id} title={name} score={title.vote_average} overview={title.overview} backdrop={backDrop} />
-          );
+            <Title
+              key={title.id}
+              title={name}
+              score={title.vote_average}
+              overview={title.overview}
+              backdrop={backDrop}
+            />
+          )
+        // eslint-disable-next-line no-else-return
         } else {
           // Only display 5 but keep id's for later
-          return (<div key={title.id}></div>);
+          return <div key={title.id} />
         }
       });
     }
     return (
-      <div ref="titlecategory" className="TitleList" data-loaded={this.state.mounted}>
+      <div className="TitleList" data-loaded={this.state.mounted}>
         <div className="Title">
           <h1>{this.props.name}</h1>
           <div className="titles-wrapper">
@@ -81,6 +91,15 @@ class TitleList extends Component{
       </div>
     );
   }
+}
+
+TitleList.propTypes = {
+  query: React.PropTypes.string,
+  name: React.PropTypes.string.isRequired,
+}
+
+TitleList.defaultProps = {
+  query: '',
 }
 
 export default TitleList
