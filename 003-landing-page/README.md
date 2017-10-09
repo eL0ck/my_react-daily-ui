@@ -1,3 +1,9 @@
+**CURRENT PROBLEM**
+- make search TitleList only fire if enter is pressed
+- Why does it fire on every key press?
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 This is a copy of the app blogged about [here](https://react.rocks/example/Movies_landing_page)

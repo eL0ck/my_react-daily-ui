@@ -41,12 +41,12 @@ class MenuPage extends Component {
           <UserProfile />
         </header>
         <Hero />
-        <TitleList name="Search Results" query={this.state.searchQuery}/>
-        <TitleList name="The Simpsons" />
-        <TitleList name="Comedy" />
-        <TitleList name="Sci-Fi greats" />
-        <TitleList name="Horror" />
-        <TitleList name="Top TV picks for Jack" />
+        <TitleList updates={true} name="Search Results" query={this.state.searchQuery}/>
+        <TitleList updates={false} name="The Simpsons" />
+        <TitleList updates={false} name="Comedy" />
+        <TitleList updates={false} name="Sci-Fi greats" />
+        <TitleList updates={false} name="Horror" />
+        <TitleList updates={false} name="Top TV picks for Jack" />
       </div>
     )
   }

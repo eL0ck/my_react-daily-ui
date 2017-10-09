@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './styles.css'
 import Title from '../Title'
 
@@ -12,7 +13,20 @@ class TitleList extends Component {
     this.state = { data: [], mounted: false };
   }
 
+  // For the initial mount
   componentWillMount() {
+    this.loadContent()
+  }
+
+  // For refreshes
+  shouldComponentUpdate(nextProps) {
+    return true
+  }
+
+    //if (this.props.query !== nextProps.query) return true
+    //return false
+  //}
+  componentWillUpdate() {
     this.loadContent()
   }
 
@@ -48,7 +62,11 @@ class TitleList extends Component {
       MovieDB.discoverTv({}, this.saveQueryToState);
     } else
     if (this.props.name === 'Search Results') {
-      MovieDB.searchMovie({ query: this.props.query }, this.saveQueryToState);
+      console.log('Search results reached. ');
+      console.log(`query is: ${this.props.query}`)
+      if (this.props.query !== '') {
+        MovieDB.searchMovie({ query: this.props.query }, this.saveQueryToState);
+      }
     } else {
       // eslint-disable-next-line no-console
       console.log('DB query is unimplimented! not displaying this component ... ');
@@ -97,8 +115,9 @@ class TitleList extends Component {
 }
 
 TitleList.propTypes = {
-  query: React.PropTypes.string,
-  name: React.PropTypes.string.isRequired,
+  updates: PropTypes.bool.isRequired,
+  query: PropTypes.string,
+  name: PropTypes.string.isRequired,
 }
 
 TitleList.defaultProps = {
