@@ -20,11 +20,13 @@ class TitleList extends Component {
   // but apparently its not stricly ES6.
   saveQueryToState = (err, res) => {
     if (err) {
+      // eslint-disable-next-line no-console
       console.log('ERROR:', err);
       this.setState({ error: err })
     } else if (res) {
       this.setState({ data: res, mounted: true })
     } else {
+      // eslint-disable-next-line no-console
       console.log('Neither err or res found on this query');
     }
   }
@@ -48,6 +50,7 @@ class TitleList extends Component {
     if (this.props.name === 'Search Results') {
       MovieDB.searchMovie({ query: this.props.query }, this.saveQueryToState);
     } else {
+      // eslint-disable-next-line no-console
       console.log('DB query is unimplimented! not displaying this component ... ');
     }
   }
