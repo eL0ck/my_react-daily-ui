@@ -18,16 +18,15 @@ class TitleList extends Component {
     this.loadContent()
   }
 
-  // For refreshes
-  shouldComponentUpdate(nextProps) {
-    return true
-  }
-
-    //if (this.props.query !== nextProps.query) return true
-    //return false
-  //}
-  componentWillUpdate() {
-    this.loadContent()
+  // For all subsequent re-mounts, load content if query changed
+  componentWillReceiveProps(nextProps) {
+    if (this.props.query !== nextProps.query) {
+      // Call loadContent as the callback because otherwise nextProps.query never becomes
+      // this.props.query
+      this.setState({}, this.loadContent)
+    } else {
+      console.log(`query remained the same: ${nextProps.query}`);
+    }
   }
 
   // This must be an arrow funct to use 'this' without passing the instance in

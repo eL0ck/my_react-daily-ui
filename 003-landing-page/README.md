@@ -46,13 +46,34 @@ The key point here is that this is a 'Controlled input'.  This means its has a `
 
 This is also a good example of **inheriting state through props**.  The `url` prop is set to a state variable of the `App` (`MenuPage` in the new version) component.
 
-**Why doesn't the request fire everytime a letter is typed?**
+**Q: Why doesn't the request fire everytime a letter is typed?**
+
+**A:**  We have a tmp state variable that only effects the property of the search results TitleList when the 'Enter' keys is pressed.  We need both the event handlers to do this.  At first it seems like only one is required but (speculation start here!) a react controlled input requires an `onChange` handler to update the value in accordance with the users typing.  We need the `onKeyUp` handler to read the actual key (ignorant to say this ?).
 
 The `TitleList` component has a method `componentWillReceiveProps` which compares only the `url` property.  If it finds no changes in this then the `TitleList` state never changes and the component doesn't re-render.
 
-(**!!** I wonder if we can do this with `shouldComponentUpdate()` it would be clearer to me)
+**Q: I wonder if we can do this with `shouldComponentUpdate()` it would be clearer to me**
 
-The usage of `componentDidMount` seems redundant to me.  Wonder if this is nessesary??
+**A:** `shouldComponentUpdate` is a frequently misinterpretted thing apparently.  I tried using it to return false when props don't change but what ended up happening was that none of the other components were not rendered in the browser.  This is what I think was happening:
+- As the page loads, React renders each component multiple times.
+- Everytime the state changes in the parent (a letter typed into the search input for example) all children are re-rendered
+- Because props didn't change, the second time it renders (for whatever reason) the TitleList is un-rendered because `shouldComponentUpdate` returned false.
+
+**What I learned from all this was that apparently even if components `render` method is called, the page is ONLY CHANGED IF THE HTML ITSELF IS NEW** ... so in theory, you can render the component as much as you want and the browser wont refresh unless the DOM is different
+
+... doesn't seem like the proper way to understand this but the way to get it working was as follows:
+- Left `shouldComponentUpdate` to the super class (always returning true apparently)
+- Used `componentWillReceiveProps` to check if new props are search worthy
+
+When the query IS search worthy we call `loadContent` to:
+- fire the search
+- Save the results
+- Show the hidden component (setting `mounted` to true)
+
+It `loadContent` is called as a callback to `setState` rather than by itself because without the state change, `loadContent` uses the old `this.props.query` rather than the new one.
+
+**Q: The usage of `componentDidMount` seems redundant to me.  Wonder if this is nessesary??**
+**A:** Yep,  not used now
 
 #### Tasks
 a) - impliment a prop for the search Query
