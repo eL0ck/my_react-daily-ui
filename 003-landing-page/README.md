@@ -89,14 +89,19 @@ I tried removing `componentWillReceiveProps` and using instead `shouldComponentU
 
 This is how it is in the original.  Maybe later I'll have alook at this but CSS is not really the point now
 
-### 11: Reduce number of updates of TitleLists
+### 1x: Look into Tests
+
+### 1x: Load content into using `DidMount`/`DidUpdate`
+From what i've read the `componentWill...` methods are async.  Therefore the render method may be called before their jobs have been completed.
+
+If i understand correctly, the idea is to render the component first in a 'loading' state, with a spinner or something.  Then, use a `setState` in the `componentDid..` method to re-render and unset the loading state.
+
+### 1x: Reduce number of updates of TitleLists
 use `shouldComponentUpdate`
 
-### 12: Lint everything
+### 1x: Lint everything
 
-### 13: Look into Tests
-
-### 14: Impliment Redux
+### 1x: Impliment Redux
 Initially just store movie genre list from query and username store
 
 ... think about storing users list of picks
