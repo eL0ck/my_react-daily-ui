@@ -74,16 +74,17 @@ class TitleList extends Component {
   }
 
   render() {
+    //console.log(`TitleList (${this.props.name}) Rendering ...`);
     let titles = '';
     if (this.state.data.results) {
       titles = this.state.data.results.map((title, i) => {
         if (i < 5) {
-          let name = '';
-          const backDrop = `http://image.tmdb.org/t/p/original${title.backdrop_path}`;
+          let name = ''
+          const backDrop = `http://image.tmdb.org/t/p/original${title.backdrop_path}`
           if (!title.name) {
-            name = title.original_title;
+            name = title.original_title
           } else {
-            name = title.name;
+            name = title.name
           }
           return (
             <Title

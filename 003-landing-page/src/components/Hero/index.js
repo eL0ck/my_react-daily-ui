@@ -1,10 +1,10 @@
-import React from 'react';
-import "./styles.css";
+import React from 'react'
+import './styles.css'
 
-const HeroButton = ({primary, text}) =>
-      <a href="#" className="Button" data-primary={primary}>{text}</a>
+const HeroButton = ({ primary, text }) =>
+  <a href="#" className="Button" data-primary={primary}>{text}</a>
 
-const Hero = () => (
+    const Hero = () => (
       <div id="hero" className="Hero" style={{backgroundImage: 'url(https://images.alphacoders.com/633/633643.jpg)'}}>
         <div className="content">
           <img className="logo" src="http://www.returndates.com/backgrounds/narcos.logo.png" alt="narcos background" />
@@ -17,6 +17,6 @@ const Hero = () => (
         </div>
         <div className="overlay"></div>
       </div>
-)
+    )
 
 export default Hero
