@@ -75,27 +75,31 @@ It `loadContent` is called as a callback to `setState` rather than by itself bec
 **Q: The usage of `componentDidMount` seems redundant to me.  Wonder if this is nessesary??**
 **A:** Yep,  not used now
 
+#### Latest Thoughts
+I tried removing `componentWillReceiveProps` and using instead `shouldComponentUpdate` and i found that:
+- Need `componentWillUpdate` or call the `loadContent` from inside `shouldComponentUpdate`
+- Both these options resulted in the render method being called before the content was loaded into the state variable.  Perhaps it is possible to `forceUpdate` to ensure render is called afterward but the current way acheives this. Even if it is kinda ambiguous.
+- As such it was not displayed.
+
+**One positive however:**  I did find I could reduce a large number of unnessesary updates with `shouldComponentUpdate`.
+
 ### 10: Fix some anoying CSS stuff
 - TitleLists still take up room when not displayed.  Change this.
 - Search bar overlaps other menu items when screen shrunk - NOT FIXING
 
 This is how it is in the original.  Maybe later I'll have alook at this but CSS is not really the point now
 
+### 11: Reduce number of updates of TitleLists
+use `shouldComponentUpdate`
 
+### 12: Lint everything
 
-### 11: Lint everything
+### 13: Look into Tests
 
-### 12: Look into Tests
-
-### 13: Impliment Redux
+### 14: Impliment Redux
 Initially just store movie genre list from query and username store
 
 ... think about storing users list of picks
-
-#### Tasks
-a) - impliment a prop for the search Query
-b) - Fill the prop from the search bar
-c) - Change the `TitleList` component to use the query string
 
 ## Extension Tasks
   Features that add to the original

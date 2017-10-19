@@ -10,12 +10,12 @@ const MovieDB = require('moviedb')('838f6976dbdff9ce8ec7aa0b31424e11')
 class TitleList extends Component {
   constructor(props) {
     super(props)
-    this.state = { data: [], mounted: false };
+    this.state = { data: [], mounted: false, loading: true, query: '' };
   }
 
   // For the initial mount
   componentWillMount() {
-    this.loadContent()
+    this.loadContent(this.props)
   }
 
   // For all subsequent re-mounts, load content if query changed
@@ -23,11 +23,13 @@ class TitleList extends Component {
     if (this.props.query !== nextProps.query) {
       // Call loadContent as the callback because otherwise nextProps.query never becomes
       // this.props.query
-      this.setState({}, this.loadContent)
+      this.setState({loading: true}, this.loadContent(nextProps))
     } else {
       console.log(`query remained the same: ${nextProps.query}`);
     }
   }
+
+
 
   // This must be an arrow funct to use 'this' without passing the instance in
   // but apparently its not stricly ES6.
@@ -35,45 +37,46 @@ class TitleList extends Component {
     if (err) {
       // eslint-disable-next-line no-console
       console.log('ERROR:', err);
-      this.setState({ error: err })
+      this.setState({ error: err, loading: false })
     } else if (res) {
-      this.setState({ data: res, mounted: true })
+      console.log('SUCCESS. Saving data to state ...');
+      this.setState({ data: res, mounted: true, loading: false })
     } else {
       // eslint-disable-next-line no-console
       console.log('Neither err or res found on this query');
     }
   }
 
-  loadContent() {
-    if (this.props.name === 'Comedy') {
+  loadContent({ name, query }) {
+    if (name === 'Comedy') {
       MovieDB.genreMovies({ id: 35 }, this.saveQueryToState)
     } else
-    if (this.props.name === 'Sci-Fi greats') {
+    if (name === 'Sci-Fi greats') {
       MovieDB.genreMovies({ id: 878 }, this.saveQueryToState)
     } else
-    if (this.props.name === 'Horror') {
+    if (name === 'Horror') {
       MovieDB.genreMovies({ id: 27 }, this.saveQueryToState)
     } else
-    if (this.props.name === 'The Simpsons') {
+    if (name === 'The Simpsons') {
       MovieDB.searchMovie({ query: 'Simpsons' }, this.saveQueryToState);
     } else
     if (this.props.name === 'Top TV picks for Jack') {
       MovieDB.discoverTv({}, this.saveQueryToState);
     } else
-    if (this.props.name === 'Search Results') {
+    if (name === 'Search Results') {
       console.log('Search results reached. ');
-      console.log(`query is: ${this.props.query}`)
-      if (this.props.query !== '') {
-        MovieDB.searchMovie({ query: this.props.query }, this.saveQueryToState);
+      console.log(`query is: ${query}`)
+      if (query !== '') {
+        MovieDB.searchMovie({ query }, this.saveQueryToState);
       }
     } else {
       // eslint-disable-next-line no-console
-      console.log('DB query is unimplimented! not displaying this component ... ');
+      console.log('DB query is unimplimented! not displaying this component ... ')
     }
   }
 
   render() {
-    //console.log(`TitleList (${this.props.name}) Rendering ...`);
+    console.log(`TitleList (${this.props.name}) Rendering ...`);
     let titles = '';
     if (this.state.data.results) {
       titles = this.state.data.results.map((title, i) => {
