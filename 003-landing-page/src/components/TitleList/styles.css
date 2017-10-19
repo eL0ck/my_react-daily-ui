@@ -3,7 +3,7 @@
   box-sizing: border-box;
   -webkit-transition: opacity 3s ease;
   transition: opacity 3s ease;
-  opacity: 0;
+  display: none;
   position: relative;
   z-index: 4;
 }
@@ -24,7 +24,7 @@
           justify-content: space-between;
 }
 .TitleList[data-loaded='true'] {
-  opacity: 1;
+  display: block;
 }
 
 h2, .TitleList, .Title {

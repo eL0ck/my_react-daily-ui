@@ -76,7 +76,12 @@ It `loadContent` is called as a callback to `setState` rather than by itself bec
 **A:** Yep,  not used now
 
 ### 10: Fix some anoying CSS stuff
-- Search bar overlaps other menu items when screen shrunk
+- TitleLists still take up room when not displayed.  Change this.
+- Search bar overlaps other menu items when screen shrunk - NOT FIXING
+
+This is how it is in the original.  Maybe later I'll have alook at this but CSS is not really the point now
+
+
 
 ### 11: Lint everything
 

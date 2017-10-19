@@ -13,7 +13,6 @@ class MenuPage extends Component {
   }
 
   handleSearchInput = e => {
-    console.log("input change handler fired ... ")
     this.setState({ temp: e.target.value })
   }
 
