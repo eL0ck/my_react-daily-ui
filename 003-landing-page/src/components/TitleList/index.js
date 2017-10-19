@@ -15,6 +15,7 @@ class TitleList extends Component {
 
   // For the initial mount
   componentWillMount() {
+    // Not convinced this is garunteed to complete before render comences
     this.loadContent(this.props)
   }
 
@@ -28,8 +29,6 @@ class TitleList extends Component {
       console.log(`query remained the same: ${nextProps.query}`);
     }
   }
-
-
 
   // This must be an arrow funct to use 'this' without passing the instance in
   // but apparently its not stricly ES6.

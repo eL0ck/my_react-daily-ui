@@ -81,6 +81,8 @@ I tried removing `componentWillReceiveProps` and using instead `shouldComponentU
 - Both these options resulted in the render method being called before the content was loaded into the state variable.  Perhaps it is possible to `forceUpdate` to ensure render is called afterward but the current way acheives this. Even if it is kinda ambiguous.
 - As such it was not displayed.
 
+(!! I didn't try completing the loadContent before returning `true` from `shouldComponentUpdate` but that should work.  However, it would be better to enter a loading state and update it in a `componentDid...` method)
+
 **One positive however:**  I did find I could reduce a large number of unnessesary updates with `shouldComponentUpdate`.
 
 ### 10: Fix some anoying CSS stuff
