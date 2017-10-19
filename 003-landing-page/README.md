@@ -75,6 +75,18 @@ It `loadContent` is called as a callback to `setState` rather than by itself bec
 **Q: The usage of `componentDidMount` seems redundant to me.  Wonder if this is nessesary??**
 **A:** Yep,  not used now
 
+### 10: Fix some anoying CSS stuff
+- Search bar overlaps other menu items when screen shrunk
+
+### 11: Lint everything
+
+### 12: Look into Tests
+
+### 13: Impliment Redux
+Initially just store movie genre list from query and username store
+
+... think about storing users list of picks
+
 #### Tasks
 a) - impliment a prop for the search Query
 b) - Fill the prop from the search bar
