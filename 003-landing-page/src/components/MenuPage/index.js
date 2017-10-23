@@ -6,6 +6,9 @@ import UserProfile from '../UserProfile'
 import Navigation from '../Navigation'
 import Hero from '../Hero'
 
+
+const MovieDB = require('moviedb')('838f6976dbdff9ce8ec7aa0b31424e11')
+
 class MenuPage extends Component {
   constructor(props) {
     super(props)
@@ -21,6 +24,33 @@ class MenuPage extends Component {
       console.log("Enter key pressed. Searching ... ")
       console.log("Search Term is", this.state.temp );
       this.setState({ searchActive: true, searchQuery: this.state.temp })
+    }
+  }
+
+  queryMaker(props, callback) {
+    if (props.name === 'Comedy') {
+      MovieDB.genreMovies({ id: 35 }, callback)
+    } else
+    if (props.name === 'Sci-Fi greats') {
+      MovieDB.genreMovies({ id: 878 }, callback)
+    } else
+    if (props.name === 'Horror') {
+      MovieDB.genreMovies({ id: 27 }, callback)
+    } else
+    if (props.name === 'The Simpsons') {
+      MovieDB.searchMovie({ query: 'Simpsons' }, callback);
+    } else
+    if (props.name === 'Top TV picks for Jack') {
+      MovieDB.discoverTv({}, callback);
+    } else
+    if (props.name === 'Search Results') {
+      console.log(`Searching for: ${props.query}`);
+      if (props.query !== '') { // Should remove this
+        MovieDB.searchMovie({ query: props.query }, callback);
+      }
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('DB query is unimplimented! not displaying this component ... ')
     }
   }
 
@@ -40,12 +70,12 @@ class MenuPage extends Component {
           <UserProfile />
         </header>
         <Hero />
-        <TitleList active={this.state.searchActive} updates={true} name="Search Results" query={this.state.searchQuery}/>
-        <TitleList active={true} updates={false} name="The Simpsons" />
-        <TitleList active={true} updates={false} name="Comedy" />
-        <TitleList active={true} updates={false} name="Sci-Fi greats" />
-        <TitleList active={true} updates={false} name="Horror" />
-        <TitleList active={true} updates={false} name="Top TV picks for Jack" />
+        <TitleList active={this.state.searchActive} updates={true} name="Search Results" query={this.state.searchQuery} loadContentFunc={this.queryMaker} />
+        <TitleList active={true} updates={false} name="The Simpsons" loadContentFunc={this.queryMaker} />
+        <TitleList active={true} updates={false} name="Comedy" loadContentFunc={this.queryMaker} />
+        <TitleList active={true} updates={false} name="Sci-Fi greats" loadContentFunc={this.queryMaker} />
+        <TitleList active={true} updates={false} name="Horror" loadContentFunc={this.queryMaker} />
+        <TitleList active={true} updates={false} name="Top TV picks for Jack" loadContentFunc={this.queryMaker} />
       </div>
     )
   }

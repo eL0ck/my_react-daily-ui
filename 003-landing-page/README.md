@@ -91,8 +91,6 @@ I tried removing `componentWillReceiveProps` and using instead `shouldComponentU
 
 This is how it is in the original.  Maybe later I'll have alook at this but CSS is not really the point now
 
-### 1x: Look into Tests
-
 ### 11: Load content into using `DidMount`/`DidUpdate`
 From what i've read the `componentWill...` methods are async.  Therefore the render method may be called before their jobs have been completed.
 
@@ -117,7 +115,10 @@ It should take data or a query and render it.  Basically this needs a pretty ser
 ### 12: Reduce number of updates of TitleLists
 use `shouldComponentUpdate`  DONE
 
-### 1x: Remove parent logic from TitleList
+### 13: Remove parent logic from TitleList
+A `TitleList` should be a generic component and not contain any logic of the parent.
+
+### 1x: Look into Tests
 
 ### 1x: Lint everything
 
