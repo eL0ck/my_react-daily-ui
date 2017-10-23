@@ -9,7 +9,7 @@ import Hero from '../Hero'
 class MenuPage extends Component {
   constructor(props) {
     super(props)
-    this.state = { searchQuery: "", temp: ""}
+    this.state = { searchActive: false, searchQuery: "", temp: ""}
   }
 
   handleSearchInput = e => {
@@ -20,7 +20,7 @@ class MenuPage extends Component {
     if (e.key === 'Enter' ){
       console.log("Enter key pressed. Searching ... ")
       console.log("Search Term is", this.state.temp );
-      this.setState({ searchQuery: this.state.temp })
+      this.setState({ searchActive: true, searchQuery: this.state.temp })
     }
   }
 
@@ -40,12 +40,12 @@ class MenuPage extends Component {
           <UserProfile />
         </header>
         <Hero />
-        <TitleList updates={true} name="Search Results" query={this.state.searchQuery}/>
-        <TitleList updates={false} name="The Simpsons" />
-        <TitleList updates={false} name="Comedy" />
-        <TitleList updates={false} name="Sci-Fi greats" />
-        <TitleList updates={false} name="Horror" />
-        <TitleList updates={false} name="Top TV picks for Jack" />
+        <TitleList active={this.state.searchActive} updates={true} name="Search Results" query={this.state.searchQuery}/>
+        <TitleList active={true} updates={false} name="The Simpsons" />
+        <TitleList active={true} updates={false} name="Comedy" />
+        <TitleList active={true} updates={false} name="Sci-Fi greats" />
+        <TitleList active={true} updates={false} name="Horror" />
+        <TitleList active={true} updates={false} name="Top TV picks for Jack" />
       </div>
     )
   }

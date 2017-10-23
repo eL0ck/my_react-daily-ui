@@ -23,7 +23,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.TitleList[data-loaded='true'] {
+.TitleList[data-activated='true'] {
   display: block;
 }
 

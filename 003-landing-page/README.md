@@ -93,13 +93,31 @@ This is how it is in the original.  Maybe later I'll have alook at this but CSS 
 
 ### 1x: Look into Tests
 
-### 1x: Load content into using `DidMount`/`DidUpdate`
+### 11: Load content into using `DidMount`/`DidUpdate`
 From what i've read the `componentWill...` methods are async.  Therefore the render method may be called before their jobs have been completed.
 
 If i understand correctly, the idea is to render the component first in a 'loading' state, with a spinner or something.  Then, use a `setState` in the `componentDid..` method to re-render and unset the loading state.
 
-### 1x: Reduce number of updates of TitleLists
-use `shouldComponentUpdate`
+#### Discussion
+I wonder if state changes here can cause infite loops of rendering.  Just to be clean I will:
+- need comprehensive `shouldComponentUpdate` methods:
+  - if data loaded AND query same as before. return false. No resulting state changes
+  - otherwise return true . Use `willMount` to setState of `loading` to true and `loaded` to false.  (TODO: consider implimenting a spinner in CSS when loading)
+  - use `DidMount` to `setState.({ loaded: true, loading: false })` turing off the spinner and displaying the data
+
+#### Conclusion
+TitleList is now implimented to mount first in a loading state displaying a spinner .  When the async query completes a re-render is triggered which displays the data.  Unnessesary renderings are prevented with `shouldComponentUpdate` and a single condition in `componentWillReceiveProps`.
+
+**Its all pretty efficient and a good example of dealing with async requests** but, there is a fundamental problem:
+
+**THIS COMPONENT CONTAINS PARENT LOGIC**
+
+It should take data or a query and render it.  Basically this needs a pretty serious re-write to make it a true component.
+
+### 12: Reduce number of updates of TitleLists
+use `shouldComponentUpdate`  DONE
+
+### 1x: Remove parent logic from TitleList
 
 ### 1x: Lint everything
 
